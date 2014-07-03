@@ -5,7 +5,8 @@ var checkProxy = require('./proxy-checker'),
         total: 0,
         inProgress: 0,
         pass: 0,
-        fail: 0
+        fail: 0,
+        error: 0
     },
     inputFile  = '',
     outputFile = '',
@@ -54,10 +55,19 @@ var ticker = setInterval(function() {
                 //process.stdout.write('.');
 
                 if (output) {
-                    process.stdout.write('.');
+                    process.stdout.write('F');
                 }
 
                 stats.fail++;
+                stats.inProgress--;
+            },
+            error: function(proxy, message) {
+                if (output) {
+                    //console.log('\n' + proxy + ': ' + message);
+                    process.stdout.write('.');
+                }
+
+                stats.error++;
                 stats.inProgress--;
             }
         });
