@@ -1,6 +1,6 @@
 var checkProxy = require('./proxy-checker'),
     fs         = require('fs'),
-    DELAY = 50,
+    DELAY = 200,
     stats = {
         total: 0,
         inProgress: 0,
