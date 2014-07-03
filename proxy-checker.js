@@ -47,13 +47,13 @@ ProxyChecker.prototype.check = function(proxy) {
 
         response.on('error', function(e) {
             console.log('problem with response: ' + e.message);
-            self.emit('fail', proxy);
+            self.emit('error', proxy, e.message);
         });
     });
 
     checker.on('error', function(e) {
         //console.log('problem with request: ' + e.message);
-        self.emit('fail', proxy);
+        self.emit('error', proxy, e.message);
     });
 
     checker.on('socket', function(socket) {
@@ -71,14 +71,19 @@ ProxyChecker.prototype.check = function(proxy) {
 module.exports = {
     check: function(proxy, options) {
         var checker = new ProxyChecker();
-        checker.on('pass', function() {
+        checker.on('pass', function(proxy) {
             if (options.pass) {
                 options.pass(proxy);
             }
         });
-        checker.on('fail', function() {
+        checker.on('fail', function(proxy) {
             if (options.fail) {
                 options.fail(proxy);
+            }
+        });
+        checker.on('error', function(proxy, message) {
+            if (options.error) {
+                options.error(proxy, message);
             }
         });
 
