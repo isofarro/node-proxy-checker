@@ -1,0 +1,21 @@
+{
+    "name": "proxy-checker",
+    "version": "0.1.0",
+    "description": "Checks whether an HTTP proxy server anonymises the user.",
+    "keywords": ["proxy", "http", "anonymous", "elite proxy"],
+    "homepage": "https://github.com/isofarro/node-proxy-checker",
+    "license": "GPL-3.0",
+    "author": {
+        "name": "Mike Davies",
+        "email": "isofarro2@gmail.com",
+        "url": "http://isofarro.com/"
+    },
+    "main": "proxy-checker",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/isofarro/node-proxy-checker"
+    },
+    "dependencies": {
+        "my-ip": ">=1.0.0"
+    }
+}
